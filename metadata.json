@@ -1,0 +1,6 @@
+{
+  "name": "The Organised Edit",
+  "description": "Home styling and organisation studio supporting busy and neurodiverse families in Manchester and Cheshire.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
