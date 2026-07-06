@@ -15,7 +15,24 @@ import {
   ChevronRight, 
   HelpCircle,
   ThumbsUp,
-  Smile
+  Smile,
+  Home,
+  Shirt,
+  Clipboard,
+  Package,
+  RefreshCw,
+  Compass,
+  Minimize2,
+  Flame,
+  Clock,
+  Wind,
+  Eye,
+  ShieldCheck,
+  FileText,
+  CheckCircle,
+  Leaf,
+  Trash2,
+  Camera
 } from 'lucide-react';
 
 import { Service, BeforeAfterItem, Testimonial, SiteSettings, Enquiry } from './types';
@@ -29,10 +46,9 @@ import {
 
 import BeforeAfterSlider, { resolveImage } from './components/BeforeAfterSlider';
 import ContactForm from './components/ContactForm';
-import CmsDashboard from './components/CmsDashboard';
 
 export default function App() {
-  // CMS & State Management - Hydrated from localStorage
+  // State Management - Hydrated from localStorage
   const [services, setServices] = useState<Service[]>([]);
   const [beforeAfterItems, setBeforeAfterItems] = useState<BeforeAfterItem[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -40,10 +56,6 @@ export default function App() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCmsOpen, setIsCmsOpen] = useState(false);
-  const [adminPassword, setAdminPassword] = useState('');
-  const [isAdminPromptOpen, setIsAdminPromptOpen] = useState(false);
-  const [adminError, setAdminError] = useState(false);
 
   // Initialize and load from local storage
   useEffect(() => {
@@ -136,19 +148,6 @@ export default function App() {
     }
   };
 
-  const handleAdminAccess = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simple bypass password for quick evaluation, default is 'admin' or empty for easy evaluation!
-    if (adminPassword.toLowerCase() === 'admin' || adminPassword === '') {
-      setIsCmsOpen(true);
-      setIsAdminPromptOpen(false);
-      setAdminError(false);
-      setAdminPassword('');
-    } else {
-      setAdminError(true);
-    }
-  };
-
 
   return (
     <div className="min-h-screen bg-[#F4F1EC]/40 text-[#2B2B2B] font-body flex flex-col selection:bg-[#A89A8A]/35 selection:text-[#2B2B2B] scroll-smooth">
@@ -214,8 +213,19 @@ export default function App() {
       </header>
 
       {/* HERO SECTION */}
-      <section id="home" className="relative bg-white pt-10 pb-20 md:py-24 border-b border-[#E6DED4]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section id="home" className="relative bg-white pt-10 pb-20 md:py-24 border-b border-[#E6DED4]/60 overflow-hidden">
+        {/* Mobile Background Image & Elegant High-Contrast Semi-Transparent Overlay */}
+        <div className="absolute inset-0 lg:hidden pointer-events-none z-0">
+          <img 
+            src="/src/assets/images/organized_closet_hero_1783305649580.jpg" 
+            alt="Organised Home Background" 
+            className="w-full h-full object-cover opacity-90 filter sepia-[0.05] brightness-[1.02]"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-[#F4F1EC]/80 backdrop-blur-xs" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           
           {/* Hero Content Block */}
           <div className="lg:col-span-5 space-y-6 text-left">
@@ -288,60 +298,292 @@ export default function App() {
         </div>
       </section>
 
-      {/* WHY WE ARE DIFFERENT - NEURODIVERGENT SPOTLIGHT */}
-      <section className="bg-white py-16 md:py-20 border-b border-[#E6DED4]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 01. WELCOME & OUR VISION SHOWCASE */}
+      <section className="bg-[#F7F6F2] py-16 md:py-24 border-b border-[#E6DED4]/60 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
           
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">Why We Are Different</span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#2B2B2B] tracking-tight">
-              Calm, Compassionate, & Customised Organisation
-            </h2>
-            <div className="h-0.5 w-16 bg-[#A5AEA0] mx-auto mt-2" />
+          {/* Welcome Slide 02 */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 text-left space-y-6 lg:pr-8">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6DED4]/40 border border-[#E6DED4]/60 text-[#A89A8A] font-sans text-[10px] font-bold uppercase tracking-widest">
+                <span>01 / Introduction</span>
+              </div>
+              <h2 className="font-serif text-3.5xl text-[#2B2B2B] leading-tight tracking-tight uppercase">
+                Welcome
+              </h2>
+              <div className="h-0.5 w-12 bg-[#A3B29A]" />
+              <p className="font-body text-[#555] text-sm leading-relaxed">
+                This creative direction deck captures the look, feel and experience we are creating for The Organised Edit.
+              </p>
+              <p className="font-body text-[#555] text-sm leading-relaxed">
+                A reference for everything we design, build and share.
+              </p>
+              <div className="pt-4 flex justify-start">
+                <Heart className="w-5 h-5 text-[#A89A8A]/60 stroke-1" />
+              </div>
+            </div>
+            <div className="lg:col-span-7 relative">
+              <div className="absolute -inset-2 bg-[#E6DED4]/40 rounded-2xl rotate-1 pointer-events-none" />
+              <div className="relative rounded-xl overflow-hidden aspect-[3/4] max-w-sm mx-auto border border-[#E6DED4] shadow-xs">
+                <img 
+                  src="/src/assets/images/welcome_shelves_1783307210267.jpg" 
+                  alt="Elegant arched shelving unit neatly styled with glass jars and woven storage baskets" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 right-4 bg-white/95 text-[10px] font-mono px-2.5 py-1 rounded border border-[#E6DED4]/60 text-[#2B2B2B] font-bold">02</span>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Our Vision Slide 03 */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-8">
+            <div className="lg:col-span-7 relative order-2 lg:order-1">
+              <div className="absolute -inset-2 bg-[#E6DED4]/40 rounded-2xl -rotate-1 pointer-events-none" />
+              <div className="relative rounded-xl overflow-hidden aspect-[3/4] max-w-sm mx-auto border border-[#E6DED4] shadow-xs">
+                <img 
+                  src="/src/assets/images/vision_kitchen_1783307229646.jpg" 
+                  alt="Modern minimalist kitchen counter styled with amber jars and fresh eucalyptus in a vase" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 right-4 bg-white/95 text-[10px] font-mono px-2.5 py-1 rounded border border-[#E6DED4]/60 text-[#2B2B2B] font-bold">03</span>
+              </div>
+            </div>
+            <div className="lg:col-span-5 text-left space-y-6 lg:pl-8 order-1 lg:order-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6DED4]/40 border border-[#E6DED4]/60 text-[#A89A8A] font-sans text-[10px] font-bold uppercase tracking-widest">
+                <span>02 / Purpose</span>
+              </div>
+              <h2 className="font-serif text-3.5xl text-[#2B2B2B] leading-tight tracking-tight uppercase">
+                Our Vision
+              </h2>
+              <div className="h-0.5 w-12 bg-[#A3B29A]" />
+              <p className="font-body text-[#555] text-sm leading-relaxed">
+                To create calm, organised homes that are beautiful, practical and easy to maintain.
+              </p>
+              <p className="font-body text-[#555] text-sm leading-relaxed">
+                We help busy families feel less overwhelmed and more in control through thoughtful organisation that works for real life.
+              </p>
+              <div className="pt-4 flex justify-start">
+                <Heart className="w-5 h-5 text-[#A89A8A]/60 stroke-1" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* MEET BETH & DANIELLE SECTION (Slide 04) */}
+      <section id="about" className="bg-white py-16 md:py-24 border-b border-[#E6DED4]/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Column 1: Neurodiverse Accommodation */}
-            <div className="bg-[#A5AEA0]/10 border border-[#A5AEA0]/30 rounded-2xl p-8 space-y-4 text-left relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#A5AEA0]/10 rounded-full translate-x-8 -translate-y-8" />
-              <div className="w-10 h-10 rounded-full bg-[#A5AEA0]/20 flex items-center justify-center text-[#55634d] font-semibold text-sm">
-                <Heart className="w-5 h-5 fill-current" />
+            {/* Photos Frame */}
+            <div className="lg:col-span-6 relative">
+              <div className="absolute -inset-3 bg-[#A89A8A]/10 rounded-3xl rotate-1 pointer-events-none" />
+              <div className="relative rounded-2xl overflow-hidden aspect-4/3 border border-[#E6DED4] shadow-sm max-w-lg mx-auto">
+                <img 
+                  src="/src/assets/images/beth_danielle_founders_1783305671597.jpg" 
+                  alt="Beth and Danielle, founders and designers of The Organised Edit" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 right-4 bg-white/95 text-[10px] font-mono px-2.5 py-1 rounded border border-[#E6DED4]/60 text-[#2B2B2B] font-bold">04</span>
               </div>
-              <h3 className="font-serif text-xl text-[#2B2B2B]">Neurodivergent Friendly</h3>
-              <p className="font-body text-[#555] text-sm leading-relaxed">
-                We specialize in supporting ADHD, autistic, and sensory-sensitive families. We reject standard neurotypical "container store" rules. Instead, we design for low cognitive load: translucent storage containers so you don't forget items exist (out of sight, out of mind), logical zones, and customizable, friendly photo labeling systems.
-              </p>
             </div>
 
-            {/* Column 2: Practicality First */}
-            <div className="bg-[#F4F1EC] border border-[#E6DED4] rounded-2xl p-8 space-y-4 text-left relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#A89A8A]/10 rounded-full translate-x-8 -translate-y-8" />
-              <div className="w-10 h-10 rounded-full bg-[#A89A8A]/20 flex items-center justify-center text-[#A89A8A] font-semibold text-sm">
-                <Sparkles className="w-5 h-5" />
+            {/* Biography and Story details */}
+            <div className="lg:col-span-6 text-left space-y-6 lg:pl-8">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6DED4]/40 border border-[#E6DED4]/60 text-[#A89A8A] font-sans text-[10px] font-bold uppercase tracking-widest">
+                <span>03 / Meet The Founders</span>
               </div>
-              <h3 className="font-serif text-xl text-[#2B2B2B]">Real systems for real life</h3>
+              <h2 className="font-serif text-3.5xl text-[#2B2B2B] tracking-tight uppercase">
+                {settings.aboutTitle}
+              </h2>
+              <div className="h-0.5 w-12 bg-[#A3B29A]" />
+              
               <p className="font-body text-[#555] text-sm leading-relaxed">
-                Homes don't need to look like filtered museum photos; they need to work for chaotic morning school runs. We build flexible sorting frameworks that take less than 2 minutes to reset. We focus on durable layouts that your busy family can actually maintain effortlessly.
+                {settings.aboutText1}
               </p>
-            </div>
 
-            {/* Column 3: Sustainability and Editing */}
-            <div className="bg-[#F4F1EC] border border-[#E6DED4] rounded-2xl p-8 space-y-4 text-left relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#A89A8A]/10 rounded-full translate-x-8 -translate-y-8" />
-              <div className="w-10 h-10 rounded-full bg-[#A89A8A]/20 flex items-center justify-center text-[#A89A8A] font-semibold text-sm">
-                <Smile className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-xl text-[#2B2B2B]">Judgement-Free & Kind</h3>
               <p className="font-body text-[#555] text-sm leading-relaxed">
-                We understand the shame and overwhelm that clutter causes. We operate with absolute discretion, kindness, and zero judgment. We always prioritize repurposing and styling with storage you already own before recommending any luxury container purchases.
+                {settings.aboutText2}
               </p>
+
+              <div className="bg-[#F7F6F2] p-5 rounded-xl border border-[#E6DED4] italic font-serif text-[#A89A8A] text-sm relative pl-10">
+                <span className="absolute top-3 left-4 text-3xl font-serif leading-none text-[#A89A8A]/30">“</span>
+                <p className="leading-relaxed">
+                  Two stylists. Two mums. One mission. With 20+ years in fashion, style and brand between us, we created The Organised Edit to help families love their homes for real and make space for what matters. ♡
+                </p>
+              </div>
+
+              {/* Micro value badges */}
+              <div className="grid grid-cols-2 gap-4 text-xs font-sans text-[#2B2B2B] font-medium pt-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#A5AEA0] rounded-full" />
+                  <span>ADHD & Autism Trained</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#A89A8A] rounded-full" />
+                  <span>20+ Years Design Legacy</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#A89A8A] rounded-full" />
+                  <span>Judgment-Free Policy</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-[#A5AEA0] rounded-full" />
+                  <span>Sustainable Local sourcing</span>
+                </div>
+              </div>
             </div>
 
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 bg-[#F4F1EC]/40 p-6 rounded-xl border border-[#E6DED4] text-center italic font-serif text-[#A89A8A] text-lg max-w-2xl mx-auto">
-            "Homes don't need to be perfect. They just need to work for you."
+      {/* 02. OUR VALUES SECTION */}
+      <section className="bg-white py-16 md:py-24 border-b border-[#E6DED4]/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left: Values List */}
+            <div className="lg:col-span-6 text-left space-y-8">
+              <div className="space-y-3">
+                <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">03 / Core Beliefs</span>
+                <h2 className="font-serif text-3.5xl text-[#2B2B2B] tracking-tight uppercase">
+                  Our Values
+                </h2>
+                <div className="h-0.5 w-16 bg-[#A3B29A]" />
+              </div>
+
+              <div className="space-y-6">
+                
+                {/* CALM */}
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-full bg-[#F4F1EC] border border-[#E6DED4] flex items-center justify-center text-[#A3B29A] shrink-0">
+                    <Smile className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-md text-[#2B2B2B] font-semibold tracking-wide uppercase">Calm</h4>
+                    <p className="font-body text-[#555] text-sm">We create peaceful homes and minds</p>
+                  </div>
+                </div>
+
+                {/* THOUGHTFUL */}
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-full bg-[#F4F1EC] border border-[#E6DED4] flex items-center justify-center text-[#A3B29A] shrink-0">
+                    <Check className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-md text-[#2B2B2B] font-semibold tracking-wide uppercase">Thoughtful</h4>
+                    <p className="font-body text-[#555] text-sm">We work through every detail</p>
+                  </div>
+                </div>
+
+                {/* HONEST */}
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-full bg-[#F4F1EC] border border-[#E6DED4] flex items-center justify-center text-[#A3B29A] shrink-0">
+                    <HelpCircle className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-md text-[#2B2B2B] font-semibold tracking-wide uppercase">Honest</h4>
+                    <p className="font-body text-[#555] text-sm">We keep it real and transparent</p>
+                  </div>
+                </div>
+
+                {/* KIND */}
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-full bg-[#F4F1EC] border border-[#E6DED4] flex items-center justify-center text-[#A3B29A] shrink-0">
+                    <Heart className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-md text-[#2B2B2B] font-semibold tracking-wide uppercase">Kind</h4>
+                    <p className="font-body text-[#555] text-sm">We work with empathy and understanding</p>
+                  </div>
+                </div>
+
+                {/* SUSTAINABLE */}
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-full bg-[#F4F1EC] border border-[#E6DED4] flex items-center justify-center text-[#A3B29A] shrink-0">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="font-serif text-md text-[#2B2B2B] font-semibold tracking-wide uppercase">Sustainable</h4>
+                    <p className="font-body text-[#555] text-sm">We choose better for the planet</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Right: Elegant Vase Image */}
+            <div className="lg:col-span-6 relative">
+              <div className="absolute -inset-3 bg-[#E6DED4]/30 rounded-3xl rotate-1 pointer-events-none" />
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-sm mx-auto border border-[#E6DED4] shadow-sm">
+                <img 
+                  src="/src/assets/images/values_vase_1783307251210.jpg" 
+                  alt="Elegant tall beige ceramic vase filled with delicate branches resting on a rustic table" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 right-4 bg-white/95 text-[10px] font-mono px-2.5 py-1 rounded border border-[#E6DED4]/60 text-[#2B2B2B] font-bold">05</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 03. WHY WE'RE DIFFERENT SECTION */}
+      <section className="bg-[#F7F6F2]/60 py-16 md:py-24 border-b border-[#E6DED4]/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Column Checklist */}
+            <div className="lg:col-span-6 text-left space-y-8">
+              <div className="space-y-3">
+                <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">04 / Our Signature Approach</span>
+                <h2 className="font-serif text-3.5xl text-[#2B2B2B] tracking-tight uppercase">
+                  Why We're Different
+                </h2>
+                <div className="h-0.5 w-16 bg-[#A3B29A]" />
+              </div>
+
+              <div className="space-y-5">
+                {[
+                  "Styling expertise meets home organisation",
+                  "Neurodiverse & family friendly approach",
+                  "Bespoke systems that actually work",
+                  "Non-judgemental, supportive & kind",
+                  "We create beautiful and functional homes"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 items-center">
+                    <div className="w-6 h-6 rounded-md bg-[#A3B29A]/15 text-[#55634d] flex items-center justify-center shrink-0 border border-[#A3B29A]/20">
+                      <Check className="w-4 h-4 stroke-[2.5]" />
+                    </div>
+                    <span className="font-sans text-stone-700 text-sm font-medium tracking-wide">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column Image */}
+            <div className="lg:col-span-6 relative">
+              <div className="absolute -inset-3 bg-[#E6DED4]/40 rounded-3xl -rotate-1 pointer-events-none" />
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-sm mx-auto border border-[#E6DED4] shadow-sm">
+                <img 
+                  src="/src/assets/images/organized_closet_hero_1783305649580.jpg" 
+                  alt="Beautifully organized walk-in wardrobe with neatly folded clothes and storage boxes" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 right-4 bg-white/95 text-[10px] font-mono px-2.5 py-1 rounded border border-[#E6DED4]/60 text-[#2B2B2B] font-bold">06</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -350,8 +592,46 @@ export default function App() {
       <section id="services" className="bg-[#F4F1EC]/40 py-16 md:py-24 border-b border-[#E6DED4]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
+          {/* Slide 07 Style Services Overview Grid */}
+          <div className="mb-20 text-center space-y-12">
+            <div className="space-y-4 max-w-3xl mx-auto">
+              <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">05 / Studio Offerings</span>
+              <h2 className="font-serif text-3.5xl text-[#2B2B2B] tracking-tight uppercase">
+                Our Services
+              </h2>
+              <div className="h-0.5 w-16 bg-[#A3B29A] mx-auto" />
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {[
+                { name: "Home Organisation", icon: Home },
+                { name: "Wardrobe Editing", icon: Shirt },
+                { name: "Kitchen Organisation", icon: Clipboard },
+                { name: "Styling & Finishing Touches", icon: Sparkles },
+                { name: "Moving Home Support", icon: Package },
+                { name: "Declutter & Reset", icon: RefreshCw }
+              ].map((serv, index) => {
+                const IconComp = serv.icon;
+                return (
+                  <div key={index} className="bg-white rounded-2xl border border-[#E6DED4]/60 p-6 flex flex-col items-center text-center space-y-4 shadow-2xs hover:border-[#A89A8A]/40 transition-all">
+                    <div className="w-12 h-12 rounded-full border border-[#A89A8A]/30 flex items-center justify-center text-[#A89A8A]">
+                      <IconComp className="w-5 h-5 stroke-1" />
+                    </div>
+                    <span className="font-serif text-xs sm:text-sm text-[#2B2B2B] font-semibold tracking-wide uppercase max-w-[150px]">
+                      {serv.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="max-w-2xl mx-auto bg-white/60 p-5 rounded-xl border border-[#E6DED4]/60 text-center font-serif text-[#A89A8A] text-sm italic">
+              "Bespoke solutions for every home, every family, every stage."
+            </div>
+          </div>
+
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">Our Services & Pricing</span>
+            <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">Investment & Packages</span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#2B2B2B] tracking-tight">
               Bespoke Styling & Organizing Experiences
             </h2>
@@ -520,69 +800,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* MEET BETH & DANIELLE SECTION */}
-      <section id="about" className="bg-[#F4F1EC]/60 py-16 md:py-24 border-b border-[#E6DED4]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Photos Frame */}
-          <div className="lg:col-span-6 relative">
-            <div className="absolute -inset-3 bg-[#A89A8A]/10 rounded-3xl rotate-1 pointer-events-none" />
-            <div className="relative rounded-2xl overflow-hidden aspect-4/3 border border-[#E6DED4] shadow-sm">
-              <img 
-                src="/src/assets/images/beth_danielle_founders_1783305671597.jpg" 
-                alt="Beth and Danielle, founders and designers of The Organised Edit" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute top-4 left-4 bg-[#2B2B2B]/75 text-white text-[9px] uppercase tracking-widest font-sans px-2.5 py-1 rounded backdrop-blur-xs font-semibold">
-                Two Stylists. Two Mums. One Mission.
-              </div>
-            </div>
-          </div>
-
-          {/* Biography and Story details */}
-          <div className="lg:col-span-6 text-left space-y-6">
-            <span className="font-sans text-xs tracking-[0.25em] uppercase text-[#A89A8A] font-bold block">Who We Are</span>
-            <h2 className="font-serif text-3.5xl text-[#2B2B2B] tracking-tight">{settings.aboutTitle}</h2>
-            
-            <p className="font-body text-[#555] text-sm leading-relaxed">
-              {settings.aboutText1}
-            </p>
-
-            <p className="font-body text-[#555] text-sm leading-relaxed">
-              {settings.aboutText2}
-            </p>
-
-            <div className="bg-white/80 p-5 rounded-2xl border border-[#E6DED4] italic font-serif text-[#A89A8A] text-md relative pl-10">
-              <span className="absolute top-4 left-4 text-3xl font-serif leading-none text-[#A89A8A]/30">“</span>
-              <p className="leading-relaxed">
-                Homes don't need to be perfect. They just need to work for you. Let go of the shame of the laundry pile and let's construct systems that work with your life.
-              </p>
-            </div>
-
-            {/* Micro value badges */}
-            <div className="grid grid-cols-2 gap-4 text-xs font-sans text-[#2B2B2B] font-medium">
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-[#A5AEA0] rounded-full" />
-                <span>ADHD & Autism Trained</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-[#A89A8A] rounded-full" />
-                <span>20+ Years Design Legacy</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-[#A89A8A] rounded-full" />
-                <span>Judgment-Free Policy</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-[#A5AEA0] rounded-full" />
-                <span>Sustainable Local sourcing</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       {/* CLIENT TESTIMONIALS SECTION */}
       <section id="testimonials" className="bg-white py-16 md:py-24 border-b border-[#E6DED4]/60">
@@ -641,115 +858,6 @@ export default function App() {
             onAddEnquiry={handleAddEnquiry} 
           />
 
-        </div>
-      </section>
-
-      {/* INSTAGRAM & SOCIAL AESTHETIC FEED PREVIEW */}
-      <section className="bg-white py-16 border-b border-[#E6DED4]/60 text-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-2 mb-8">
-            <span className="font-sans text-[10px] tracking-widest uppercase text-[#A89A8A] font-bold block">Follow our Journey</span>
-            <h3 className="font-serif text-2xl text-[#2B2B2B]">Inspired by @theorganisededit</h3>
-            <p className="text-xs text-[#555] font-body">Daily tips, kind advice, and calm aesthetics from our Manchester studio.</p>
-          </div>
-
-          {/* Instagram Feed Simulation Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#E6DED4] group cursor-pointer bg-stone-100">
-              <img 
-                src="https://images.unsplash.com/photo-1595341595378-fc7fa2d3bbfe?auto=format&fit=crop&q=80&w=400" 
-                alt="Minimal pantry jars" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs gap-1">
-                <span>♥ 142 Likes</span>
-              </div>
-            </div>
-
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#E6DED4] group cursor-pointer bg-stone-100">
-              <img 
-                src="/src/assets/images/organized_closet_hero_1783305649580.jpg" 
-                alt="Beautiful hanging coats" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs gap-1">
-                <span>♥ 238 Likes</span>
-              </div>
-            </div>
-
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#E6DED4] group cursor-pointer bg-stone-100">
-              <img 
-                src="/src/assets/images/organized_pantry_shelves_1783305692550.jpg" 
-                alt="Wicker storage baskets" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs gap-1">
-                <span>♥ 309 Likes</span>
-              </div>
-            </div>
-
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#E6DED4] group cursor-pointer bg-stone-100">
-              <img 
-                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400" 
-                alt="Clean sensory kids bins" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs gap-1">
-                <span>♥ 185 Likes</span>
-              </div>
-            </div>
-
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#E6DED4] group cursor-pointer bg-stone-100">
-              <img 
-                src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=400" 
-                alt="Neatly arranged towels" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs gap-1">
-                <span>♥ 194 Likes</span>
-              </div>
-            </div>
-
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#E6DED4] group cursor-pointer bg-stone-100">
-              <img 
-                src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=400" 
-                alt="Cozy organic laundry" 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs gap-1">
-                <span>♥ 277 Likes</span>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="mt-8 flex justify-center gap-4">
-            <a 
-              href={`https://instagram.com/${settings.contactInstagram}`} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="px-6 py-2.5 bg-[#2B2B2B] text-white hover:bg-[#A89A8A] rounded-full inline-flex items-center gap-2 font-sans text-[10px] font-semibold tracking-wider uppercase transition-all"
-            >
-              <Instagram className="w-4 h-4" />
-              <span>Follow @{settings.contactInstagram}</span>
-            </a>
-            <a 
-              href={`https://wa.me/${settings.contactWhatsapp}`} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="px-6 py-2.5 border border-[#A5AEA0] text-[#55634d] hover:bg-[#A5AEA0]/10 rounded-full inline-flex items-center gap-2 font-sans text-[10px] font-semibold tracking-wider uppercase transition-all"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>Chat on WhatsApp</span>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -813,93 +921,13 @@ export default function App() {
 
         </div>
 
-        {/* Bottom copyright & secure login gear button */}
+        {/* Bottom copyright */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#A89A8A]/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[10px] font-sans text-[#CFC6BB]/60 text-center sm:text-left">
             © {new Date().getFullYear()} The Organised Edit. All rights reserved. Registered and operating in Manchester, UK.
           </p>
-
-          {/* Secure lock link for CMS Editor */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsAdminPromptOpen(true)}
-              className="text-[10px] font-sans uppercase tracking-widest text-[#A89A8A] hover:text-white flex items-center gap-1 bg-[#A89A8A]/10 px-3 py-1.5 rounded-lg border border-[#A89A8A]/20 transition-all cursor-pointer"
-            >
-              <Lock className="w-3 h-3" />
-              <span>Admin CMS Portal</span>
-            </button>
-          </div>
         </div>
       </footer>
-
-      {/* ADMIN CMS PASSWORD PROMPT MODAL */}
-      {isAdminPromptOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-sm border border-[#E6DED4] shadow-xl text-left space-y-4">
-            <div className="flex justify-between items-center">
-              <h4 className="font-serif text-lg text-[#2B2B2B]">Admin Access Prompt</h4>
-              <button onClick={() => { setIsAdminPromptOpen(false); setAdminError(false); }} className="text-stone-400 hover:text-stone-600">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            
-            <p className="text-xs text-stone-500 font-body leading-relaxed">
-              Access the Organised Edit CMS visual content database. You can manage styling copy, services list, gallery, and client booking requests.
-            </p>
-            
-            <div className="bg-stone-50 p-3 rounded-lg border border-[#E6DED4]/60 text-[10px] font-sans text-stone-600">
-              <strong>Tip for testers:</strong> Leave the password field blank or enter <strong>admin</strong> and click "Enter CMS" for instant access!
-            </div>
-
-            <form onSubmit={handleAdminAccess} className="space-y-3">
-              <div>
-                <label className="text-[9px] uppercase tracking-wider text-stone-400 block mb-1">Access Key / Password</label>
-                <input
-                  type="password"
-                  placeholder="Password (or blank)"
-                  value={adminPassword}
-                  onChange={(e) => setAdminPassword(e.target.value)}
-                  className="w-full border border-[#E6DED4] rounded-xl px-3 py-2 text-sm focus:outline-hidden focus:border-[#A89A8A] text-[#2B2B2B]"
-                />
-                {adminError && <p className="text-red-500 text-[10px] mt-1 font-sans">Invalid passkey. Enter 'admin' or leave blank.</p>}
-              </div>
-
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => { setIsAdminPromptOpen(false); setAdminError(false); }}
-                  className="px-4 py-2 border.5 border-stone-300 rounded-lg text-xs font-sans text-stone-600 hover:bg-stone-50"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-[#2B2B2B] text-[#F4F1EC] hover:bg-[#A89A8A] rounded-lg text-xs font-sans font-semibold uppercase tracking-wider"
-                >
-                  Enter CMS
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* FULL CMS PANEL BACKEND DIALOG */}
-      <CmsDashboard
-        isOpen={isCmsOpen}
-        onClose={() => setIsCmsOpen(false)}
-        services={services}
-        setServices={setServices}
-        beforeAfterItems={beforeAfterItems}
-        setBeforeAfterItems={setBeforeAfterItems}
-        testimonials={testimonials}
-        setTestimonials={setTestimonials}
-        settings={settings}
-        setSettings={setSettings}
-        enquiries={enquiries}
-        setEnquiries={setEnquiries}
-        onResetDefaults={handleResetDefaults}
-      />
 
     </div>
   );
